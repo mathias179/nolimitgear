@@ -3,1174 +3,695 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NLG | No Limit Gear Core Corporation</title>
+    <title>No Limit Gear | Premium Track & Street Hub</title>
     <style>
         /* ==========================================================================
-           1. MODERN ENTERPRISE DESIGN SYSTEM (Stealth & Crimson Slate Theme)
+           1. NEXT-GEN DESIGN SYSTEM (Frosted Glass & Deep Slate)
            ========================================================================== */
         :root {
-            --nlg-black: #09090b;
-            --nlg-dark-grey: #121214;
-            --nlg-surface: #18181b;
-            --nlg-input-bg: #202024;
-            --nlg-accent: #e11d48;
-            --nlg-accent-hover: #be123c;
-            --nlg-text-pure: #ffffff;
-            --nlg-text-muted: #a1a1aa;
-            --nlg-border: #27272a;
+            /* Smooth Dark Palette */
+            --nlg-bg-base: #050505;
+            --nlg-bg-surface: rgba(20, 20, 22, 0.6);
+            --nlg-bg-card: rgba(28, 28, 32, 0.4);
+            --nlg-border-soft: rgba(255, 255, 255, 0.08);
+            --nlg-border-hover: rgba(255, 255, 255, 0.2);
+            
+            /* Text & Accents */
+            --nlg-text-main: #ffffff;
+            --nlg-text-muted: #9ca3af;
+            --nlg-accent: #f43f5e; /* Ein weicheres, moderneres Racing-Rot */
+            --nlg-accent-glow: rgba(244, 63, 94, 0.4);
             --nlg-success: #10b981;
-            --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --cubic-bezier: cubic-bezier(0.16, 1, 0.3, 1);
-            --transition-clean: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        [data-theme="light"] {
-            --nlg-black: #f4f4f5;
-            --nlg-dark-grey: #ffffff;
-            --nlg-surface: #f4f4f5;
-            --nlg-input-bg: #e4e4e7;
-            --nlg-accent: #e11d48;
-            --nlg-accent-hover: #be123c;
-            --nlg-text-pure: #09090b;
-            --nlg-text-muted: #71717a;
-            --nlg-border: #e4e4e7;
+            
+            /* Mechanics */
+            --font-main: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            --transition-fluid: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --blur-heavy: blur(24px);
+            --blur-light: blur(12px);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            letter-spacing: -0.02em;
-        }
-
-        body {
-            font-family: var(--font-display);
-            background-color: var(--nlg-black);
-            color: var(--nlg-text-pure);
-            line-height: 1.5;
-            overflow-x: hidden;
+            font-family: var(--font-main);
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Typography */
-        h1, h2, h3, h4 {
-            font-weight: 700;
-            color: var(--nlg-text-pure);
-            text-transform: uppercase;
-            letter-spacing: -0.03em;
+        body {
+            background-color: var(--nlg-bg-base);
+            color: var(--nlg-text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Subtiles Hintergrund-Glow-Muster */
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(244, 63, 94, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+            background-attachment: fixed;
         }
 
-        h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.95; }
-        h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); position: relative; padding-bottom: 0.75rem; border-bottom: 2px solid var(--nlg-border); margin-bottom: 3rem; }
-        h3 { font-size: 1.25rem; letter-spacing: -0.01em; text-transform: none; }
-        p { color: var(--nlg-text-muted); font-size: 1rem; line-height: 1.6; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--nlg-accent); }
 
-        .container { width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 4rem; }
-        
-        /* Interactive Controls */
-        .nlg-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 2.5rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-radius: 0;
-            cursor: pointer;
-            border: none;
-            transition: var(--transition-clean);
+        /* Modern Typography */
+        h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.03em; }
+        h1 { font-size: clamp(3rem, 7vw, 6rem); line-height: 1.05; text-transform: uppercase; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 3rem; background: linear-gradient(to right, #fff, #9ca3af); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: #fff; }
+        p { color: var(--nlg-text-muted); font-size: 1.05rem; }
+
+        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 5%; }
+
+        /* UI Components (Glassmorphism Buttons & Inputs) */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1rem 2rem; border-radius: 100px; font-weight: 600; font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
+            transition: var(--transition-fluid); border: 1px solid transparent;
         }
-        .nlg-btn-primary { background-color: var(--nlg-accent); color: #ffffff; }
-        .nlg-btn-primary:hover { background-color: var(--nlg-accent-hover); }
-        .nlg-btn-secondary { background-color: transparent; color: var(--nlg-text-pure); border: 1px solid var(--nlg-border); }
-        .nlg-btn-secondary:hover { border-color: var(--nlg-text-pure); background-color: rgba(255,255,255,0.02); }
+        .btn-primary {
+            background-color: var(--nlg-accent); color: #fff;
+            box-shadow: 0 4px 15px var(--nlg-accent-glow);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px var(--nlg-accent-glow);
+            background-color: #e11d48;
+        }
+        .btn-glass {
+            background: var(--nlg-bg-surface); backdrop-filter: var(--blur-light);
+            border: 1px solid var(--nlg-border-soft); color: var(--nlg-text-main);
+        }
+        .btn-glass:hover {
+            border-color: var(--nlg-border-hover); background: rgba(255,255,255,0.05);
+            transform: translateY(-2px);
+        }
+
+        .input-glass {
+            width: 100%; padding: 1rem 1.5rem; border-radius: 12px;
+            background: rgba(10, 10, 12, 0.5); backdrop-filter: var(--blur-light);
+            border: 1px solid var(--nlg-border-soft); color: #fff;
+            font-size: 1rem; outline: none; transition: var(--transition-fluid);
+        }
+        .input-glass:focus { border-color: var(--nlg-accent); background: rgba(20, 20, 24, 0.8); }
 
         /* ==========================================================================
-           2. HEADER & NAVIGATION INFRASTRUCTURE
+           2. NAVIGATION (Floating Glass Header)
            ========================================================================== */
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: rgba(9, 9, 11, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--nlg-border);
-            transition: var(--transition-clean);
+            position: fixed; top: 1.5rem; left: 5%; right: 5%; z-index: 1000;
+            background: rgba(15, 15, 18, 0.7); backdrop-filter: var(--blur-heavy);
+            border: 1px solid var(--nlg-border-soft); border-radius: 20px;
+            padding: 0.5rem 2rem; transition: var(--transition-fluid);
         }
-        header.compact { background-color: var(--nlg-black); }
+        .nav-wrapper { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+        .logo { font-size: 1.4rem; font-weight: 900; color: #fff; text-decoration: none; letter-spacing: -1px; }
+        .logo span { color: var(--nlg-accent); }
 
-        .nav-wrapper { display: flex; align-items: center; justify-content: space-between; height: 90px; }
-        .brand-logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.04em; color: var(--nlg-text-pure); text-decoration: none; }
-        .brand-logo span { color: var(--nlg-accent); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--nlg-text-muted); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; }
 
-        .nav-list { display: flex; gap: 3rem; list-style: none; }
-        .nav-link { font-size: 0.875rem; font-weight: 500; text-transform: uppercase; color: var(--nlg-text-muted); text-decoration: none; transition: var(--transition-clean); }
-        .nav-link:hover, .nav-link.active { color: var(--nlg-text-pure); }
-
-        .action-hub { display: flex; align-items: center; gap: 1.5rem; }
-        .action-icon-btn { background: transparent; border: none; color: var(--nlg-text-pure); font-size: 1.25rem; cursor: pointer; position: relative; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
-        .cart-indicator { position: absolute; top: 4px; right: 4px; background-color: var(--nlg-accent); color: white; font-size: 0.7rem; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .cart-trigger { background: transparent; border: none; color: #fff; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 600; }
+        .cart-badge { background: var(--nlg-accent); padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; }
 
         /* ==========================================================================
-           3. HERO STAGE SLIDER
+           3. HERO STAGE (Cinematic)
            ========================================================================== */
-        .hero-stage { height: 100vh; position: relative; overflow: hidden; }
-        .stage-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1); display: flex; align-items: center; background-size: cover; background-position: center; }
-        .stage-slide::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(9,9,11,0.95) 0%, rgba(9,9,11,0.4) 100%); }
-        .stage-slide.active { opacity: 1; z-index: 1; }
-
-        .stage-content { position: relative; z-index: 2; max-width: 800px; }
-        .stage-content p { font-size: 1.25rem; margin: 2rem 0 3rem 0; color: var(--nlg-text-muted); max-width: 600px; }
-        .stage-btn-group { display: flex; gap: 1.5rem; }
-
-        .stage-arrow { position: absolute; bottom: 4rem; right: 4rem; z-index: 10; display: flex; gap: 1rem; }
-        .arrow-btn { background: transparent; border: 1px solid var(--nlg-border); color: var(--nlg-text-pure); width: 50px; height: 50px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition-clean); }
-        .arrow-btn:hover { border-color: var(--nlg-text-pure); }
+        .hero {
+            height: 100vh; display: flex; align-items: center; position: relative;
+            background: url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=2000') center/cover;
+        }
+        .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.4) 100%); }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; padding-top: 5rem; }
+        .hero-tag { display: inline-block; padding: 6px 12px; background: var(--nlg-accent-glow); border: 1px solid var(--nlg-accent); border-radius: 20px; color: var(--nlg-accent); font-weight: 700; font-size: 0.8rem; margin-bottom: 1.5rem; text-transform: uppercase; }
 
         /* ==========================================================================
-           4. PRODUCT ECOSYSTEM & LIVE FILTER SUITE (With Admin Upload Panel)
+           4. MARKETPLACE (Smooth Grid & Filters)
            ========================================================================== */
-        .marketplace { padding: 120px 0; border-bottom: 1px solid var(--nlg-border); }
-        .marketplace-grid { display: grid; grid-template-columns: 320px 1fr; gap: 4rem; margin-top: 4rem; }
+        .section-spacer { padding: 120px 0; position: relative; }
         
-        /* Corporate Filters Dashboard */
-        .filter-panel { position: sticky; top: 130px; height: fit-content; }
-        .filter-section { margin-bottom: 3rem; }
-        .filter-section-title { font-size: 0.875rem; text-transform: uppercase; color: var(--nlg-text-pure); margin-bottom: 1.25rem; letter-spacing: 0.05em; font-weight: 600; }
-        .filter-control-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
-        .filter-control-btn { background: transparent; border: none; color: var(--nlg-text-muted); text-align: left; font-size: 1rem; cursor: pointer; transition: var(--transition-clean); width: 100%; padding: 0.25rem 0; }
-        .filter-control-btn:hover, .filter-control-btn.active { color: var(--nlg-text-pure); padding-left: 6px; }
-
-        /* Dynamic Inventory Dashboard Container (Modern Input Concept) */
-        .inventory-dashboard { background-color: var(--nlg-dark-grey); border: 1px solid var(--nlg-border); padding: 2rem; margin-bottom: 3rem; }
-        .inventory-dashboard h4 { font-size: 0.9rem; letter-spacing: 0.05em; margin-bottom: 1.5rem; color: var(--nlg-text-pure); border-bottom: 1px solid var(--nlg-border); padding-bottom: 0.5rem; }
-        .dashboard-form { display: flex; flex-direction: column; gap: 1rem; }
-        .dashboard-input { width: 100%; background-color: var(--nlg-input-bg); border: 1px solid var(--nlg-border); color: var(--nlg-text-pure); padding: 0.85rem 1rem; font-size: 0.9rem; font-family: inherit; transition: var(--transition-clean); }
-        .dashboard-input:focus { outline: none; border-color: var(--nlg-text-muted); }
-        .file-upload-wrapper { position: relative; display: inline-block; width: 100%; }
-        .file-upload-label { display: block; background-color: var(--nlg-surface); border: 1px dashed var(--nlg-border); padding: 1rem; text-align: center; font-size: 0.85rem; color: var(--nlg-text-muted); cursor: pointer; transition: var(--transition-clean); }
-        .file-upload-label:hover { border-color: var(--nlg-text-pure); color: var(--nlg-text-pure); }
-        .hidden-file-input { position: absolute; left: 0; top: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer; }
-
-        /* Catalog Grid Presentation Layer */
-        .catalog-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2.5rem; }
-        .catalog-item { background-color: var(--nlg-dark-grey); border: 1px solid var(--nlg-border); transition: var(--transition-clean); display: flex; flex-direction: column; }
-        .catalog-item:hover { border-color: var(--nlg-text-pure); }
-        .item-visual-frame { width: 100%; height: 320px; background-color: var(--nlg-surface); overflow: hidden; position: relative; }
-        .item-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--cubic-bezier); }
-        .catalog-item:hover .item-img { transform: scale(1.03); }
-        .item-data-block { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; }
-        .item-brand-tag { font-size: 0.75rem; font-weight: 700; color: var(--nlg-accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
-        .item-title { font-size: 1.35rem; font-weight: 600; margin-bottom: 1rem; text-transform: none; letter-spacing: -0.01em; }
-        .item-specs { font-size: 0.9rem; color: var(--nlg-text-muted); margin-bottom: 1.5rem; }
+        .filter-dashboard {
+            background: var(--nlg-bg-card); backdrop-filter: var(--blur-light);
+            border: 1px solid var(--nlg-border-soft); border-radius: 24px;
+            padding: 2rem; margin-bottom: 4rem; display: flex; flex-wrap: wrap; gap: 2rem;
+        }
+        .filter-col { flex: 1; min-width: 250px; }
+        .filter-label { display: block; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; color: var(--nlg-text-muted); margin-bottom: 1rem; }
         
-        .item-size-select-box { margin-bottom: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--nlg-border); }
-        .size-dropdown { width: 100%; background: var(--nlg-input-bg); border: 1px solid var(--nlg-border); color: var(--nlg-text-pure); padding: 0.75rem; font-weight: 500; font-family: inherit; outline: none; }
-
-        .item-interaction-row { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--nlg-border); }
-        .item-price-tag { font-size: 1.4rem; font-weight: 700; color: var(--nlg-text-pure); }
-
-        /* ==========================================================================
-           5. FACTORY WORKSHOP ARCHITECTURE
-           ========================================================================== */
-        .factory-service { padding: 120px 0; background-color: var(--nlg-dark-grey); border-bottom: 1px solid var(--nlg-border); }
-        .factory-layout { display: grid; grid-template-columns: 1fr 480px; gap: 5rem; margin-top: 4rem; }
-        .factory-form-fieldset { border: none; display: flex; flex-direction: column; gap: 2rem; }
-        .field-group { display: flex; flex-direction: column; gap: 0.75rem; }
-        .field-group label { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; color: var(--nlg-text-muted); letter-spacing: 0.05em; }
+        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2.5rem; }
+        .product-card {
+            background: var(--nlg-bg-surface); backdrop-filter: var(--blur-light);
+            border: 1px solid var(--nlg-border-soft); border-radius: 24px;
+            overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-fluid);
+        }
+        .product-card:hover { transform: translateY(-8px); border-color: var(--nlg-border-hover); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
         
-        .service-selection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .custom-checkbox-wrapper { position: relative; }
-        .custom-checkbox-input { position: absolute; opacity: 0; width: 0; height: 0; }
-        .custom-checkbox-facade { display: block; background-color: var(--nlg-black); border: 1px solid var(--nlg-border); padding: 1.25rem; font-weight: 500; font-size: 0.95rem; cursor: pointer; transition: var(--transition-clean); text-align: center; }
-        .custom-checkbox-input:checked + .custom-checkbox-facade { border-color: var(--nlg-text-pure); background-color: var(--nlg-surface); }
-
-        /* Invoice Matrix Component */
-        .invoice-matrix { background-color: var(--nlg-black); border: 1px solid var(--nlg-border); padding: 3rem; display: flex; flex-direction: column; justify-content: space-between; position: sticky; top: 130px; height: fit-content; }
-        .matrix-header { border-bottom: 1px solid var(--nlg-border); padding-bottom: 1.5rem; margin-bottom: 2rem; }
-        .matrix-ledger { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2.5rem; }
-        .ledger-line { display: flex; justify-content: space-between; font-size: 0.95rem; color: var(--nlg-text-muted); }
-        .ledger-line-total { display: flex; justify-content: space-between; font-size: 1.75rem; font-weight: 700; border-top: 1px solid var(--nlg-border); padding-top: 2rem; color: var(--nlg-text-pure); }
-
-        /* ==========================================================================
-           6. DEALERSHIP AUTOMATION MODUL (An- & Verkauf Matrix)
-           ========================================================================== */
-        .dealership-core { padding: 120px 0; border-bottom: 1px solid var(--nlg-border); }
-        .dealership-navigation-bar { display: flex; gap: 3rem; margin-bottom: 4rem; border-bottom: 1px solid var(--nlg-border); }
-        .dealership-toggle-btn { background: transparent; border: none; color: var(--nlg-text-muted); font-size: 1.5rem; font-weight: 700; text-transform: uppercase; cursor: pointer; padding-bottom: 1rem; transition: var(--transition-clean); position: relative; }
-        .dealership-toggle-btn.active { color: var(--nlg-text-pure); }
-        .dealership-toggle-btn.active::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px; background-color: var(--nlg-accent); }
+        .card-img-box { height: 280px; position: relative; overflow: hidden; background: #0a0a0c; display: flex; align-items: center; justify-content: center; }
+        .card-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .product-card:hover .card-img-box img { transform: scale(1.05); }
+        .brand-pill { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.6); backdrop-filter: var(--blur-light); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
         
-        .dealership-view { display: none; }
-        .dealership-view.active { display: block; }
+        .card-body { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-body p { font-size: 0.9rem; margin-bottom: 1.5rem; flex-grow: 1; line-height: 1.5; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid var(--nlg-border-soft); }
+        .price { font-size: 1.4rem; font-weight: 800; color: #fff; }
 
         /* ==========================================================================
-           7. ENTERPRISE LOGISTICS (Filialnetz & Routing Console)
+           5. FACTORY CONFIGURATOR (Glass Panels)
            ========================================================================== */
-        .logistics-network { padding: 120px 0; background-color: var(--nlg-dark-grey); }
-        .logistics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 3rem; margin-top: 4rem; }
-        .logistics-card { background-color: var(--nlg-black); border: 1px solid var(--nlg-border); padding: 3rem; display: flex; flex-direction: column; transition: var(--transition-clean); }
-        .logistics-card:hover { border-color: var(--nlg-text-pure); }
-        .logistics-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .logistics-meta-info { margin: 1.5rem 0 2.5rem 0; font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.5rem; }
+        .factory-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+        .glass-panel { background: var(--nlg-bg-card); backdrop-filter: var(--blur-heavy); border: 1px solid var(--nlg-border-soft); border-radius: 24px; padding: 3rem; }
         
-        /* Modern Structured Vector Mock instead of messy text */
-        .vector-map-element { width: 100%; height: 8px; background: linear-gradient(90deg, var(--nlg-border) 0%, var(--nlg-accent) 50%, var(--nlg-border) 100%); margin-bottom: 2rem; opacity: 0.4; }
+        .checkbox-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; cursor: pointer; padding: 1rem; border-radius: 12px; border: 1px solid var(--nlg-border-soft); transition: var(--transition-fluid); }
+        .checkbox-row:hover { background: rgba(255,255,255,0.03); }
+        .checkbox-row input { width: 20px; height: 20px; accent-color: var(--nlg-accent); }
+
+        .invoice-line { display: flex; justify-content: space-between; margin-bottom: 1rem; color: var(--nlg-text-muted); font-size: 0.95rem; }
+        .invoice-total { display: flex; justify-content: space-between; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--nlg-border-soft); font-size: 1.8rem; font-weight: 800; color: #fff; }
 
         /* ==========================================================================
-           8. CORE SYSTEMS OVERLAYS (Cart Drawer, Chat Engine & Toast Center)
+           6. DEALERSHIP (Ankauf & Verkauf)
            ========================================================================== */
-        /* Cart Flyout */
-        .cart-slide-over { position: fixed; top: 0; right: -500px; width: 500px; height: 100%; background-color: var(--nlg-dark-grey); z-index: 1100; border-left: 1px solid var(--nlg-border); transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; }
-        .cart-slide-over.engaged { right: 0; }
-        .cart-slide-header { padding: 3rem; border-bottom: 1px solid var(--nlg-border); display: flex; justify-content: space-between; align-items: center; }
-        .cart-slide-body { padding: 3rem; flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 2rem; }
-        .cart-line-item { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 1.5rem; border-bottom: 1px solid var(--nlg-border); }
-        .cart-line-item-remove-btn { background: transparent; border: none; color: var(--nlg-accent); cursor: pointer; font-size: 0.85rem; text-transform: uppercase; font-weight: 600; margin-top: 0.5rem; }
-        .cart-slide-footer { padding: 3rem; border-top: 1px solid var(--nlg-border); background-color: var(--nlg-black); }
-
-        /* AI Chat Console Widget */
-        .ai-chat-anchor { position: fixed; bottom: 40px; right: 40px; z-index: 1000; }
-        .ai-chat-trigger { width: 60px; height: 60px; background-color: var(--nlg-text-pure); color: var(--nlg-black); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; transition: var(--transition-clean); }
-        .ai-chat-trigger:hover { background-color: var(--nlg-accent); color: white; }
-        .ai-chat-window { position: absolute; bottom: 80px; right: 0; width: 400px; height: 550px; background-color: var(--nlg-dark-grey); border: 1px solid var(--nlg-border); display: none; flex-direction: column; opacity: 0; transform: translateY(10px); transition: var(--transition-clean); }
-        .ai-chat-window.active { display: flex; opacity: 1; transform: translateY(0); }
-        .ai-chat-header { background-color: var(--nlg-surface); padding: 1.5rem 2rem; border-bottom: 1px solid var(--nlg-border); display: flex; justify-content: space-between; align-items: center; }
-        .ai-chat-terminal { flex-grow: 1; padding: 2rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; font-size: 0.9rem; }
-        .terminal-output-block { max-width: 85%; padding: 1rem 1.25rem; line-height: 1.5; }
-        .block-system { background-color: var(--nlg-surface); border: 1px solid var(--nlg-border); align-self: flex-start; color: var(--nlg-text-pure); }
-        .block-client { background-color: var(--nlg-accent); color: #ffffff; align-self: flex-end; }
-        .ai-chat-input-bar { padding: 1.5rem; border-top: 1px solid var(--nlg-border); display: flex; gap: 1rem; background-color: var(--nlg-black); }
-
-        /* Toast Hub Notification Base */
-        #toast-hub-center { position: fixed; top: 40px; right: 40px; z-index: 2000; display: flex; flex-direction: column; gap: 1rem; }
-        .toast-notification { background-color: var(--nlg-dark-grey); border: 1px solid var(--nlg-text-pure); color: var(--nlg-text-pure); padding: 1.25rem 2rem; font-size: 0.9rem; font-weight: 500; transform: translateY(-30px); opacity: 0; transition: var(--transition-clean); display: flex; align-items: center; gap: 1.5rem; }
-        .toast-notification.active { transform: translateY(0); opacity: 1; }
-
-        /* Full Screen Legal Layer */
-        .overlay-curtain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(9,9,11,0.98); z-index: 1500; display: none; align-items: center; justify-content: center; }
-        .overlay-curtain.engaged { display: flex; }
-        .curtain-content-wrapper { max-width: 800px; width: 90%; max-height: 80vh; overflow-y: auto; background-color: var(--nlg-dark-grey); border: 1px solid var(--nlg-border); padding: 4rem; position: relative; }
+        .tab-nav { display: flex; gap: 1rem; margin-bottom: 3rem; }
+        .tab-btn { background: transparent; border: none; color: var(--nlg-text-muted); font-size: 1.2rem; font-weight: 700; cursor: pointer; padding: 0.5rem 1rem; transition: 0.3s; position: relative; }
+        .tab-btn.active { color: #fff; }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: 0; left: 10%; width: 80%; height: 3px; background: var(--nlg-accent); border-radius: 3px; }
+        .tab-content { display: none; animation: fadeIn 0.5s ease forwards; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* ==========================================================================
-           9. REFINEMENT FOOTER
+           7. HUBS & LOCATIONS (Wickrath Focus)
            ========================================================================== */
-        footer { background-color: #050507; border-top: 1px solid var(--nlg-border); padding: 8px 0 4px 0; color: var(--nlg-text-muted); font-size: 0.9rem; }
-        .footer-matrix { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 4rem; margin-bottom: 6rem; padding-top: 80px;}
-        .footer-brand-summary h4 { color: #fff; margin-bottom: 1.5rem; }
-        .footer-list-container h5 { color: var(--nlg-text-pure); margin-bottom: 1.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .footer-link-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-        .footer-action-link { color: var(--nlg-text-muted); text-decoration: none; transition: var(--transition-clean); }
-        .footer-action-link:hover { color: var(--nlg-text-pure); }
-        .footer-base-line { border-top: 1px solid var(--nlg-border); padding-top: 3rem; display: flex; justify-content: space-between; align-items: center; color: rgba(255,255,255,0.2); }
+        .locations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .location-card { position: relative; padding: 3rem; border-radius: 24px; background: var(--nlg-bg-card); border: 1px solid var(--nlg-border-soft); overflow: hidden; transition: var(--transition-fluid); }
+        .location-card:hover { border-color: var(--nlg-accent); }
+        .location-card.hq { background: linear-gradient(145deg, rgba(28,28,32,0.8), rgba(244,63,94,0.05)); border-color: rgba(244,63,94,0.3); }
+        .location-badge { display: inline-block; background: var(--nlg-accent); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; margin-bottom: 1.5rem; text-transform: uppercase; }
 
-        /* Responsive Adapters */
-        @media (max-width: 1200px) {
-            .marketplace-grid, .factory-layout { grid-template-columns: 1fr; }
-            .filter-panel, .invoice-matrix { position: static; }
-            .container { padding: 0 2rem; }
+        /* ==========================================================================
+           8. CORE OVERLAYS (Warenkorb & Toast)
+           ========================================================================== */
+        .cart-drawer { position: fixed; top: 0; right: -600px; width: 100%; max-width: 500px; height: 100vh; background: rgba(10,10,12,0.85); backdrop-filter: var(--blur-heavy); border-left: 1px solid var(--nlg-border-soft); z-index: 2000; transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; }
+        .cart-drawer.open { right: 0; }
+        .cart-header { padding: 2.5rem; border-bottom: 1px solid var(--nlg-border-soft); display: flex; justify-content: space-between; align-items: center; }
+        .cart-body { padding: 2.5rem; flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; }
+        .cart-item-row { display: flex; justify-content: space-between; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .cart-footer { padding: 2.5rem; background: rgba(0,0,0,0.5); border-top: 1px solid var(--nlg-border-soft); }
+
+        #toast-container { position: fixed; bottom: 30px; right: 30px; z-index: 3000; display: flex; flex-direction: column; gap: 1rem; }
+        .toast { background: var(--nlg-bg-surface); backdrop-filter: var(--blur-heavy); border: 1px solid var(--nlg-border-soft); padding: 1rem 1.5rem; border-radius: 16px; font-size: 0.9rem; font-weight: 500; transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .toast.show { transform: translateX(0); }
+
+        /* ==========================================================================
+           9. FOOTER
+           ========================================================================== */
+        footer { padding: 5rem 0 2rem 0; border-top: 1px solid var(--nlg-border-soft); background: #000; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 4rem; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+        .footer-links a { color: var(--nlg-text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-links a:hover { color: #fff; }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--nlg-border-soft); display: flex; justify-content: space-between; color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+
+        @media (max-width: 992px) {
+            .factory-grid, .footer-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            header { top: 0; border-radius: 0; border-top: none; border-left: none; border-right: none; }
         }
     </style>
 </head>
 <body>
 
-    <div id="toast-hub-center"></div>
+    <div id="toast-container"></div>
 
-    <header id="global-header">
+    <header id="main-header">
         <div class="container nav-wrapper">
-            <a href="#" class="brand-logo">NLG<span>.</span></a>
-            <ul class="nav-list">
-                <li><a href="#" class="nav-link active">Home</a></li>
-                <li><a href="#marketplace" class="nav-link">Marketplace</a></li>
-                <li><a href="#factory" class="nav-link">Factory Service</a></li>
-                <li><a href="#dealership" class="nav-link">Dealership</a></li>
-                <li><a href="#logistics" class="nav-link">Network</a></li>
+            <a href="#" class="logo">NLG<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#marketplace">Equipment</a></li>
+                <li><a href="#dealership">Bikes</a></li>
+                <li><a href="#factory">Werkstatt</a></li>
+                <li><a href="#hubs">Filialen</a></li>
             </ul>
             <div class="action-hub">
-                <button class="action-icon-btn" id="core-theme-toggle" aria-label="Toggle Core Visual Engine">🌓</button>
-                <button class="action-icon-btn" id="core-cart-toggle" aria-label="Display Core Ledger System">
-                    💼<span class="cart-indicator" id="ledger-count-display">0</span>
+                <button class="cart-trigger" onclick="toggleCart()">
+                    Warenkorb <span class="cart-badge" id="cart-counter">0</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <section class="hero-stage" id="home">
-        <div class="stage-slide active" style="background-image: url('https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=1920');">
-            <div class="container">
-                <div class="stage-content">
-                    <h1>ENGINEERING PERFORMANCE.</h1>
-                    <p>Mittelpunkt für hochentwickelte Motorradtechnik, kuratierte High-End Rennausrüstung und werksseitig zertifizierten Meisterservice.</p>
-                    <div class="stage-btn-group">
-                        <a href="#marketplace" class="nlg-btn nlg-btn-primary">Katalog ansehen</a>
-                        <a href="#factory" class="nlg-btn nlg-btn-secondary">Service anfordern</a>
-                    </div>
-                </div>
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <span class="hero-tag">Core Corporation Europe</span>
+            <h1>Limits exist<br>to be broken.</h1>
+            <p>Die absolute Benchmark für kompromissloses Riding-Equipment. Exklusive NLG Lederkombis, High-End Helme, ausgewählte Partner-Marken und die größte zertifizierte Meisterwerkstatt in NRW.</p>
+            <div style="display:flex; gap:1rem; margin-top:2rem;">
+                <a href="#marketplace" class="btn btn-primary">Ausrüstung Shoppen</a>
+                <a href="#factory" class="btn btn-glass">Werkstatt Termin</a>
             </div>
-        </div>
-        <div class="stage-slide" style="background-image: url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1920');">
-            <div class="container">
-                <div class="stage-content">
-                    <h1>FACTORY TUNING LABORATORY.</h1>
-                    <p>Präzisionsarbeit auf Herstellerniveau. Große, modern ausgestattete Arbeitsflächen und vollumfänglicher Diagnose-Support für ambitionierte Fahrer.</p>
-                    <div class="stage-btn-group">
-                        <a href="#factory" class="nlg-btn nlg-btn-primary">Konfigurator starten</a>
-                        <a href="#logistics" class="nlg-btn nlg-btn-secondary">Hub-Standorte</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="stage-arrow">
-            <button class="arrow-btn" id="stage-prev-control">◀</button>
-            <button class="arrow-btn" id="stage-next-control">▶</button>
         </div>
     </section>
 
-    <section class="marketplace" id="marketplace">
+    <section class="section-spacer" id="marketplace">
         <div class="container">
-            <h2>NLG Core Inventory</h2>
+            <h2>Track & Street Equipment</h2>
             
-            <div class="marketplace-grid">
-                <aside class="filter-panel">
-                    
-                    <div class="inventory-dashboard">
-                        <h4>Inventory Intake (Live-Uploader)</h4>
-                        <div class="dashboard-form">
-                            <input type="text" id="intake-name" class="dashboard-input" placeholder="Modell / Artikelbezeichnung">
-                            <input type="number" id="intake-price" class="dashboard-input" placeholder="Listenpreis (€)">
-                            <select id="intake-category" class="dashboard-input">
-                                <option value="bikes">Kategorie: Fahrzeuge</option>
-                                <option value="gear">Kategorie: Equipment & Gear</option>
-                            </select>
-                            <select id="intake-brand" class="dashboard-input">
-                                <option value="NLG Factory">Brand: NLG Factory</option>
-                                <option value="Aprilia">Brand: Aprilia</option>
-                                <option value="Alpinestars">Brand: Alpinestars</option>
-                                <option value="AGV">Brand: AGV</option>
-                                <option value="Leftlane">Brand: Leftlane</option>
-                            </select>
-                            <div class="file-upload-wrapper">
-                                <label for="intake-file" class="file-upload-label" id="file-label-text">Eigenes Produktbild hochladen</label>
-                                <input type="file" id="intake-file" class="hidden-file-input" accept="image/*">
-                            </div>
-                            <button class="nlg-btn nlg-btn-primary" style="padding:0.75rem;" id="intake-trigger-action">Artikel einspeisen</button>
-                        </div>
-                    </div>
-
-                    <div class="filter-section">
-                        <div class="filter-section-title">Segment</div>
-                        <ul class="filter-control-list" id="segment-filter-hook">
-                            <li><button class="filter-control-btn active" data-filter="all">Gesamtes Sortiment</button></li>
-                            <li><button class="filter-control-btn" data-filter="bikes">Fahrzeuge</button></li>
-                            <li><button class="filter-control-btn" data-filter="gear">Ausrüstung & Bekleidung</button></li>
-                        </ul>
-                    </div>
-                    <div class="filter-section">
-                        <div class="filter-section-title">Hersteller Matrix</div>
-                        <ul class="filter-control-list" id="brand-filter-hook">
-                            <li><button class="filter-control-btn active" data-brand="all">Alle Marken</button></li>
-                            <li><button class="filter-control-btn" data-brand="Aprilia">Aprilia Racing</button></li>
-                            <li><button class="filter-control-btn" data-brand="Alpinestars">Alpinestars</button></li>
-                            <li><button class="filter-control-btn" data-brand="AGV">AGV Helmets</button></li>
-                            <li><button class="filter-control-btn" data-brand="Leftlane">Leftlane Engineering</button></li>
-                            <li><button class="filter-control-btn" data-brand="NLG Factory">NLG Factory Customs</button></li>
-                        </ul>
-                    </div>
-                </aside>
-
-                <main class="catalog-container" id="catalog-dynamic-target">
-                    </main>
+            <div class="filter-dashboard">
+                <div class="filter-col">
+                    <span class="filter-label">Suche</span>
+                    <input type="text" id="search-input" class="input-glass" placeholder="Artikel, Marke oder Details..." onkeyup="renderCatalog()">
+                </div>
+                <div class="filter-col">
+                    <span class="filter-label">Kategorie</span>
+                    <select id="cat-filter" class="input-glass" onchange="renderCatalog()">
+                        <option value="all">Alle Kategorien</option>
+                        <option value="gear">Bekleidung & Helme (Gear)</option>
+                        <option value="parts">Performance & Auspuffe</option>
+                    </select>
+                </div>
+                <div class="filter-col">
+                    <span class="filter-label">Hersteller</span>
+                    <select id="brand-filter" class="input-glass" onchange="renderCatalog()">
+                        <option value="all">Alle Premium Marken</option>
+                        <option value="NLG Factory">NLG Factory</option>
+                        <option value="Leftlane">Leftlane</option>
+                        <option value="AGV">AGV</option>
+                        <option value="Alpinestars">Alpinestars</option>
+                        <option value="Akrapovič">Akrapovič</option>
+                    </select>
+                </div>
             </div>
+
+            <div class="catalog-grid" id="catalog-target">
+                </div>
         </div>
     </section>
 
-    <section class="factory-service" id="factory">
+    <section class="section-spacer" id="dealership" style="background-color: var(--nlg-bg-card);">
         <div class="container">
-            <h2>Factory Service Configuration</h2>
+            <h2>Dealership & Valuation</h2>
             
-            <div class="factory-layout">
-                <form id="factory-interactive-calculation-sheet" onsubmit="event.preventDefault();">
-                    <div class="factory-form-fieldset">
-                        <div class="field-group">
-                            <label for="sheet-brand-vector">Fahrzeug-Spezifikation</label>
-                            <select id="sheet-brand-vector" class="dashboard-input">
-                                <option value="eu">Europäischer Performance-Verband (Aprilia, Ducati etc.)</option>
-                                <option value="jp">Japanische Aggregate-Architektur (Honda, Yamaha etc.)</option>
-                                <option value="ex">Spezialanfertigungen / Prototypen-Chassis</option>
-                            </select>
-                        </div>
-                        <div class="field-group">
-                            <label for="sheet-displacement-vector">Hubraum-Klassifizierung</label>
-                            <select id="sheet-displacement-vector" class="dashboard-input">
-                                <option value="light">Lightweight (Bis 125 ccm)</option>
-                                <option value="mid">Midweight (125 ccm - 600 ccm)</option>
-                                <option value="super" selected>Superbike / Hyper Naked (Über 600 ccm)</option>
-                            </select>
-                        </div>
-                        <div class="field-group">
-                            <label for="sheet-primary-service">Haupt-Arbeitsauftrag</label>
-                            <select id="sheet-primary-service" class="dashboard-input">
-                                <option value="inspektion">Intervall-Inspektion nach Werksdatenblatt</option>
-                                <option value="fluid">Performance-Flüssigkeitsservice & Filteranlagen</option>
-                                <option value="wheel">Radsatz-Konfiguration & Laserauswuchtung</option>
-                                <option value="mapping">ECU Custom Mapping & Leistungsprüfstand</option>
-                                <option value="diy">Infrastruktur-Nutzung: Factory Do-It-Yourself Stellplatz / Std.</option>
-                            </select>
-                        </div>
-                        <div class="field-group">
-                            <label>Optionale System-Erweiterungen</label>
-                            <div class="service-selection-grid">
-                                <div class="custom-checkbox-wrapper">
-                                    <input type="checkbox" id="ext-clean" class="custom-checkbox-input" value="50">
-                                    <label for="ext-clean" class="custom-checkbox-facade">Tiefenreinigung</label>
-                                </div>
-                                <div class="custom-checkbox-wrapper">
-                                    <input type="checkbox" id="ext-transit" class="custom-checkbox-input" value="90">
-                                    <label for="ext-transit" class="custom-checkbox-facade">Logistik-Shuttle</label>
-                                </div>
-                                <div class="custom-checkbox-wrapper">
-                                    <input type="checkbox" id="ext-legal" class="custom-checkbox-input" value="150">
-                                    <label for="ext-legal" class="custom-checkbox-facade">Prüfzertifikat (HU/AU)</label>
-                                </div>
-                                <div class="custom-checkbox-wrapper">
-                                    <input type="checkbox" id="ext-express" class="custom-checkbox-input" value="80">
-                                    <label for="ext-express" class="custom-checkbox-facade">Express-Priorisierung</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+            <div class="tab-nav">
+                <button class="tab-btn active" data-target="sales">Fahrzeug-Bestand</button>
+                <button class="tab-btn" data-target="valuation">Digitale Inzahlungnahme</button>
+            </div>
 
-                <div class="invoice-matrix">
-                    <div>
-                        <div class="matrix-header">
-                            <h3>Preiskalkulation</h3>
-                            <p>Transparente Aufschlüsselung der Material- und Lohnkosten</p>
-                        </div>
-                        <ul class="matrix-ledger" id="invoice-ledger-hook">
-                            </ul>
+            <div id="sales" class="tab-content active">
+                <div class="catalog-grid" id="bikes-target">
                     </div>
-                    <div class="ledger-line-total">
-                        <span>Endbetrag (Brutto):</span>
-                        <span id="matrix-aggregate-total">0,00 €</span>
+            </div>
+
+            <div id="valuation" class="tab-content">
+                <div class="glass-panel" style="max-width: 800px;">
+                    <h3>KI-gestützte Wertermittlung</h3>
+                    <p style="margin-bottom: 2rem;">Lass den aktuellen Marktwert deines Motorrads berechnen, bevor du es in einer unserer Filialen in Zahlung gibst.</p>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem; margin-bottom:1.5rem;">
+                        <input type="text" id="val-model" class="input-glass" placeholder="Marke & Modell (z.B. Kawasaki Z900)">
+                        <input type="number" id="val-year" class="input-glass" placeholder="Erstzulassung (Jahr)">
+                        <input type="number" id="val-km" class="input-glass" placeholder="Kilometerstand">
+                        <select id="val-cond" class="input-glass">
+                            <option value="1.2">Sehr gepflegt (Scheckheft lückenlos)</option>
+                            <option value="1.0" selected>Gebraucht (Normale Spuren)</option>
+                            <option value="0.8">Reparaturbedürftig</option>
+                        </select>
                     </div>
-                    <button class="nlg-btn nlg-btn-primary" style="margin-top:2rem;" id="factory-order-trigger">Werkstattauftrag bestätigen</button>
+                    <button class="btn btn-primary" onclick="calculateValuation()">Wert jetzt ermitteln</button>
+                    <div id="val-result-box" style="display:none; margin-top:2rem; padding-top:2rem; border-top:1px solid var(--nlg-border-soft);">
+                        <span style="font-size:0.85rem; color:var(--nlg-text-muted); text-transform:uppercase; letter-spacing:1px;">Vorläufiges Angebot</span>
+                        <div id="val-price" style="font-size:3rem; font-weight:800; color:var(--nlg-accent); line-height:1;">0 €</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="dealership-core" id="dealership">
+    <section class="section-spacer" id="factory">
         <div class="container">
-            <div class="dealership-navigation-bar">
-                <button class="dealership-toggle-btn active" data-view="dealership-purchase">Fahrzeug-Ankauf (Digitale Schätzung)</button>
-                <button class="dealership-toggle-btn" data-view="dealership-sales">Bestand (Neufahrzeuge & Vorführer)</button>
-            </div>
-
-            <div class="dealership-view active" id="dealership-purchase">
-                <div style="background-color: var(--nlg-dark-grey); border:1px solid var(--nlg-border); padding: 4rem;">
-                    <h3>Fahrzeug-Direktankauf</h3>
-                    <p style="margin-bottom:3rem; max-width:700px;">Ermittle anhand unserer algorithmischen Marktdatenanalyse den aktuellen Ankaufswert deines Motorrads.</p>
+            <h2>Factory Workshop</h2>
+            
+            <div class="factory-grid">
+                <div>
+                    <h3>Zertifizierter Meisterservice</h3>
+                    <p style="margin-bottom:2rem;">Unsere Werkstatt auf der Kreuzhütte in Wickrath ist ausgestattet mit den neuesten Diagnosegeräten für alle führenden Motorrad-Brands. Transparente Kosten, kompromisslose Qualität.</p>
                     
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-bottom:2rem;">
-                        <div class="field-group">
-                            <label>Spezifisches Modell / Baureihe</label>
-                            <input type="text" id="valuation-model" class="dashboard-input" placeholder="z.B. Aprilia RSV4 Factory 1100">
-                        </div>
-                        <div class="field-group">
-                            <label>Erstzulassung (Jahr)</label>
-                            <input type="number" id="valuation-year" class="dashboard-input" value="2023">
-                        </div>
-                    </div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-bottom:3rem;">
-                        <div class="field-group">
-                            <label>Laufleistung (Gesamt-KM)</label>
-                            <input type="number" id="valuation-mileage" class="dashboard-input" value="8500">
-                        </div>
-                        <div class="field-group">
-                            <label>Zustandskategorie</label>
-                            <select id="valuation-status" class="dashboard-input">
-                                <option value="1.25">Exzellent (Keine Mängel, lückenlose Historie)</option>
-                                <option value="1.0" selected>Gepflegt (Geringe Abnutzung, vorschriftsmäßige Wartung)</option>
-                                <option value="0.75">Gebraucht (Optische Beeinträchtigungen, Service ausstehend)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button class="nlg-btn nlg-btn-primary" id="valuation-trigger">Ankaufswert kalkulieren</button>
-                    
-                    <div id="valuation-response-frame" style="margin-top:3rem; display:none; padding:2.5rem; background-color:var(--nlg-surface); border:1px solid var(--nlg-border);">
-                        <span style="font-size:0.8rem; text-transform:uppercase; color:var(--nlg-text-muted); font-weight:700; letter-spacing:0.05em;">Kalkuliertes NLG-Ankaufsangebot</span>
-                        <div id="valuation-output-price" style="font-size:2.5rem; font-weight:800; color:var(--nlg-text-pure); margin:0.5rem 0;">0,00 €</div>
-                        <p style="font-size:0.9rem;">Dieses Angebot basiert auf datengestützten Marktwerten. Der finale Ankauf erfolgt nach physischer Verifizierung in einem unserer Logistik-Hubs.</p>
+                    <div class="glass-panel">
+                        <h4 style="margin-bottom:1.5rem; color:var(--nlg-text-muted);">Auftrag konfigurieren</h4>
+                        <select id="srv-base" class="input-glass" style="margin-bottom:1.5rem;" onchange="updateServiceInvoice()">
+                            <option value="250">Reguläre Jahresinspektion (ab 250€)</option>
+                            <option value="120">Reifenwechsel inkl. Wuchten (ab 120€)</option>
+                            <option value="380">Custom Mapping & Prüfstand (ab 380€)</option>
+                            <option value="180">Fahrwerks-Abstimmung (ab 180€)</option>
+                        </select>
+                        
+                        <h4 style="margin-bottom:1rem; font-size:0.9rem; color:var(--nlg-text-muted);">Zusatzoptionen</h4>
+                        <label class="checkbox-row">
+                            <input type="checkbox" class="srv-addon" value="45" onchange="updateServiceInvoice()">
+                            <span>Rennsport-Bremsflüssigkeit Upgrade</span>
+                        </label>
+                        <label class="checkbox-row">
+                            <input type="checkbox" class="srv-addon" value="120" onchange="updateServiceInvoice()">
+                            <span>TÜV / HU / AU Abnahme im Haus</span>
+                        </label>
+                        <label class="checkbox-row">
+                            <input type="checkbox" class="srv-addon" value="60" onchange="updateServiceInvoice()">
+                            <span>Intensive Handwäsche & Versiegelung</span>
+                        </label>
                     </div>
                 </div>
-            </div>
-
-            <div class="dealership-view" id="dealership-sales">
-                <div class="catalog-container" id="dealership-bikes-target">
+                
+                <div class="glass-panel" style="position:sticky; top:120px;">
+                    <h3 style="margin-bottom:2rem;">Kalkulation</h3>
+                    <ul id="invoice-list" style="list-style:none;">
+                        </ul>
+                    <div class="invoice-total">
+                        <span>Total:</span>
+                        <span id="invoice-sum">250,00 €</span>
                     </div>
+                    <button class="btn btn-primary" style="width:100%; margin-top:2rem;" onclick="showToast('Werkstatt-Termin wurde in unserem System angefragt!')">Termin verbindlich anfragen</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="logistics-network" id="logistics">
+    <section class="section-spacer" id="hubs" style="background-color: var(--nlg-bg-card);">
         <div class="container">
-            <h2>NLG Logistics Hubs</h2>
-            <div class="logistics-grid">
-                <div class="logistics-card">
-                    <h3>Hub Süd (München)</h3>
-                    <div class="vector-map-element"></div>
-                    <div class="logistics-meta-info">
-                        <p>Heidemannstraße 164, 80939 München</p>
-                        <p>muenchen@nolimitgear.com | +49 89 4523890</p>
-                    </div>
-                    <button class="nlg-btn nlg-btn-secondary routing-action-trigger" data-destination="München">Route generieren</button>
+            <h2>NLG Hubs & Stores</h2>
+            
+            <div class="locations-grid">
+                <div class="location-card hq">
+                    <span class="location-badge">Hauptfiliale & Factory (HQ)</span>
+                    <h3 style="font-size:1.8rem; margin-bottom:1rem;">NLG Base Wickrath</h3>
+                    <p style="color:#fff; font-weight:600; margin-bottom:1rem;">Kreuzhütte 24<br>41189 Mönchengladbach</p>
+                    <p style="font-size:0.9rem;">Unser Kernzentrum. Hier vereinen sich der größte Showroom für Premium-Gear und unsere voll ausgestattete Hightech-Meisterwerkstatt auf hunderten Quadratmetern.</p>
                 </div>
-                <div class="logistics-card">
-                    <h3>Hub Nord (Hamburg)</h3>
-                    <div class="vector-map-element"></div>
-                    <div class="logistics-meta-info">
-                        <p>Nedderfeld 95, 22529 Hamburg</p>
-                        <p>hamburg@nolimitgear.com | +49 40 7639120</p>
-                    </div>
-                    <button class="nlg-btn nlg-btn-secondary routing-action-trigger" data-destination="Hamburg">Route generieren</button>
-                </div>
-                <div class="logistics-card">
-                    <h3>Hub Ost (Berlin)</h3>
-                    <div class="vector-map-element"></div>
-                    <div class="logistics-meta-info">
-                        <p>Schnellerstraße 120, 12439 Berlin</p>
-                        <p>berlin@nolimitgear.com | +49 30 9832100</p>
-                    </div>
-                    <button class="nlg-btn nlg-btn-secondary routing-action-trigger" data-destination="Berlin">Route generieren</button>
+                
+                <div class="location-card">
+                    <span class="location-badge" style="background:var(--nlg-bg-surface); border:1px solid var(--nlg-border-soft); color:var(--nlg-text-muted);">Logistics Hub</span>
+                    <h3 style="margin-bottom:1rem;">NLG Store Düsseldorf</h3>
+                    <p style="margin-bottom:1rem;">Hafenquartier Ost<br>40221 Düsseldorf</p>
+                    <p style="font-size:0.9rem;">Urbaner Store mit Fokus auf Street-Gear, Abholung von Online-Bestellungen und exklusive Leftlane Apparel Drops.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="cart-slide-over" id="cart-slide-over-node">
-        <div class="cart-slide-header">
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
             <h3>Warenkorb</h3>
-            <button id="cart-slide-close-action" style="background:transparent; border:none; color:var(--nlg-text-pure); font-size:1.25rem; cursor:pointer;">✕</button>
+            <button onclick="toggleCart()" style="background:none; border:none; color:#fff; font-size:1.8rem; cursor:pointer;">&times;</button>
         </div>
-        <div class="cart-slide-body" id="cart-ledger-items-hook">
+        <div class="cart-body" id="cart-items">
             </div>
-        <div class="cart-slide-footer">
-            <div style="display:flex; justify-content:space-between; font-weight:700; font-size:1.25rem; margin-bottom:2rem;">
-                <span>Gesamtsumme:</span>
-                <span id="cart-aggregate-price-display">0,00 €</span>
+        <div class="cart-footer">
+            <div style="display:flex; justify-content:space-between; font-size:1.4rem; font-weight:800; margin-bottom:1.5rem;">
+                <span>Summe:</span>
+                <span id="cart-total-price">0,00 €</span>
             </div>
-            <button class="nlg-btn nlg-btn-primary" style="width:100%;" id="checkout-action-trigger">Sicher auschecken</button>
-        </div>
-    </div>
-
-    <div class="ai-chat-anchor">
-        <button class="ai-chat-trigger" id="ai-chat-window-toggle">AI</button>
-        <div class="ai-chat-window" id="ai-chat-window-node">
-            <div class="ai-chat-header">
-                <h3>NLG AI Assistant</h3>
-                <button id="ai-chat-close-x" style="background:transparent; border:none; color:var(--nlg-text-pure); font-size:1rem; cursor:pointer;">✕</button>
-            </div>
-            <div class="ai-chat-terminal" id="ai-chat-terminal-hook">
-                <div class="terminal-output-block block-system">NLG Core-Konnektivität hergestellt. Wie kann ich Sie bezüglich unserer Fuhrparksysteme, Ausrüstungskomponenten oder Werkstattverfahren unterstützen?</div>
-            </div>
-            <div class="ai-chat-input-bar">
-                <input type="text" id="ai-chat-client-input" class="dashboard-input" placeholder="Anfrage formulieren..." style="padding:0.6rem 1rem;">
-                <button class="nlg-btn nlg-btn-primary" style="padding:0.6rem 1.25rem;" id="ai-chat-transmit-action">➔</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="overlay-curtain" id="global-curtain-node">
-        <div class="curtain-content-wrapper">
-            <button id="curtain-dismiss-action" style="position:absolute; top:2rem; right:2rem; background:transparent; border:none; color:var(--nlg-text-pure); font-size:1.5rem; cursor:pointer;">✕</button>
-            <div id="curtain-injected-data-target"></div>
+            <button class="btn btn-primary" style="width:100%; padding:1.2rem;" onclick="checkoutSim()">Zur Kasse gehen</button>
         </div>
     </div>
 
     <footer>
         <div class="container">
-            <div class="footer-matrix">
-                <div class="footer-brand-summary">
-                    <h4>NLG CORE.</h4>
-                    <p>Die europäische Benchmark für Hochleistungs-Motorräder, Rennsport-Equipment und herstellerunabhängigen Factory-Service.</p>
+            <div class="footer-grid">
+                <div>
+                    <h2 style="font-size:1.8rem; border:none; margin-bottom:1rem;">NLG.</h2>
+                    <p style="font-size:0.85rem; max-width:300px;">Wirtschaft/Politik Projekt "No Limit Gear". Entwickelt für absolute Premium-Ansprüche in der Motorradbranche.</p>
                 </div>
-                <div class="footer-list-container">
-                    <h5>Portfolio</h5>
-                    <ul class="footer-link-list">
-                        <li><a href="#marketplace" class="footer-action-link">Superbikes</a></li>
-                        <li><a href="#marketplace" class="footer-action-link">Lederkombis</a></li>
-                        <li><a href="#marketplace" class="footer-action-link">Helme</a></li>
-                        <li><a href="#marketplace" class="footer-action-link">Performance Gear</a></li>
+                <div>
+                    <h4 style="color:#fff; margin-bottom:1rem; font-size:0.9rem;">Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="#marketplace">NLG Handschuhe</a></li>
+                        <li><a href="#marketplace">Lederkombis</a></li>
+                        <li><a href="#marketplace">Leftlane Gear</a></li>
+                        <li><a href="#marketplace">Auspuffanlagen</a></li>
                     </ul>
                 </div>
-                <div class="footer-list-container">
-                    <h5>Services</h5>
-                    <ul class="footer-link-list">
-                        <li><a href="#factory" class="footer-action-link">ECU Tuning</a></li>
-                        <li><a href="#factory" class="footer-action-link">Inspektionen</a></li>
-                        <li><a href="#dealership" class="footer-action-link">Fahrzeugankauf</a></li>
+                <div>
+                    <h4 style="color:#fff; margin-bottom:1rem; font-size:0.9rem;">Factory</h4>
+                    <ul class="footer-links">
+                        <li><a href="#factory">Inspektionen</a></li>
+                        <li><a href="#factory">Fahrwerks Setup</a></li>
+                        <li><a href="#dealership">Fahrzeugankauf</a></li>
                     </ul>
                 </div>
-                <div class="footer-list-container">
-                    <h5>Compliance</h5>
-                    <ul class="footer-link-list">
-                        <li><a href="#" class="footer-action-link legal-node-trigger" data-legal="impressum">Impressum</a></li>
-                        <li><a href="#" class="footer-action-link legal-node-trigger" data-legal="datenschutz">Datenschutz</a></li>
-                        <li><a href="#" class="footer-action-link legal-node-trigger" data-legal="agb">AGB</a></li>
+                <div>
+                    <h4 style="color:#fff; margin-bottom:1rem; font-size:0.9rem;">Management</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">CEO: Mathias, Tim, Marie</a></li>
+                        <li><a href="#">Head of Sales: Mathias, Tim, Marie</a></li>
+                        <li><a href="#">Marketing PR: Mathias, Tim, Marie</a></li>
+                        <li><a href="#">Chief Mechanic: Mathias, Tim, Marie</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-base-line">
-                <p>&copy; 2026 No Limit Gear Corporation Europe GmbH. All rights reserved.</p>
-                <p>Performance Matrix Web Deployment Engine v4.2</p>
+            <div class="footer-bottom">
+                <span>&copy; 2026 No Limit Gear. Alle Rechte vorbehalten.</span>
+                <span>HQ: Kreuzhütte 24, Mönchengladbach</span>
             </div>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        /* ==========================================================================
+           DATENBANK: HIER BILDER UND PRODUKTE ANPASSEN
+           ========================================================================== */
+        const db = [
+            // --- MOTORRÄDER (Keine NLG Bikes, nur offizielle Brands) ---
+            { id: 101, type: 'bikes', brand: 'Aprilia', title: 'Aprilia RSV4 Factory 1100', price: 25999, img: 'img/aprilia_rsv4_factory.jpg', options: ['Standard Layout', 'Race-Mapping'], details: '217 PS V4-Triebwerk, Öhlins Smart EC 2.0 semiaktives Fahrwerk, Carbon Aero Winglets.' },
+            { id: 102, type: 'bikes', brand: 'Aprilia', title: 'Aprilia Tuono V4 Factory', price: 20999, img: 'img/aprilia_tuono_v4.jpg', options: ['Standard Layout'], details: 'Naked-Bike Performance der Spitzenklasse mit MotoGP-Elektronik-Paket.' },
+            { id: 103, type: 'bikes', brand: 'Kawasaki', title: 'Kawasaki Ninja ZX-10R', price: 19995, img: 'img/kawasaki_zx10r.jpg', options: ['KRT Edition', 'Black Edition'], details: 'Reihenvierzylinder mit WSBK DNA. Kompromisslos auf der Rennstrecke.' },
+            
+            // --- GEAR (NLG Handschuhe/Kombis + Leftlane + Andere) ---
+            // NLG (Nur Handschuhe & Kombis)
+            { id: 201, type: 'gear', brand: 'NLG Factory', title: 'NLG Carbon Grid Pro Motorradhandschuhe', price: 249, img: 'img/nlg_handschuhe_pro.jpg', options: ['S', 'M', 'L', 'XL'], details: 'Känguruleder-Konstruktion mit Knöchelprotektoren aus echter Kohlefaser und extremem Abriebschutz.' },
+            { id: 202, type: 'gear', brand: 'NLG Factory', title: 'NLG Evolution Track Lederkombi 1-Teiler', price: 1199, img: 'img/nlg_lederkombi_evolution.jpg', options: ['48', '50', '52', '54', '56'], details: 'Premium Rindslederkombi, komplett auf Aerodynamik und Bewegungsfreiheit auf dem Track ausgelegt.' },
+            { id: 203, type: 'gear', brand: 'NLG Factory', title: 'NLG Street Rider Sporthandschuhe', price: 129, img: 'img/nlg_handschuhe_street.jpg', options: ['M', 'L', 'XL'], details: 'Perfekter Mix aus Schutz und Komfort für sportliche Landstraßen-Fahrten.' },
+            
+            // Leftlane (Spezifische Wunsch-Items)
+            { id: 204, type: 'gear', brand: 'Leftlane', title: 'Leftlane Rückenprotektor SC-1/FB-M', price: 49, img: 'img/leftlane_rueckenprotektor.jpg', options: ['Universal M'], details: '3D-Protektor aus extrem flexiblem viskoelastischem Weichschaum mit überragenden Schlagdämpfungswerten.' },
+            { id: 205, type: 'gear', brand: 'Leftlane', title: 'Leftlane ARAMID RACING ZIPPER', price: 129, img: 'img/leftlane_aramid_zipper.jpg', options: ['S', 'M', 'L', 'XL'], details: 'Aramid-verstärkter Racing-Hoodie. Sieht aus wie Streetwear, schützt wie Motorrad-Gear.' },
+            { id: 206, type: 'gear', brand: 'Leftlane', title: 'Leftlane Cross Goggles', price: 89, img: 'img/leftlane_cross_goggles.jpg', options: ['Clear Lens', 'Dark Smoke Lens'], details: 'Profi MX-Brille mit Anti-Fog Beschichtung, weitem Sichtfeld und dreilagigem Schweiß-Schaumstoff.' },
+            
+            // AGV & Alpinestars
+            { id: 207, type: 'gear', brand: 'AGV', title: 'AGV Pista GP RR Carbon Helm', price: 1350, img: 'img/agv_pista_gp_rr.jpg', options: ['S', 'M', 'L', 'XL'], details: 'Vollcarbon. FIM Homologiert. Genau der Helm, der auch in der MotoGP getragen wird.' },
+            { id: 208, type: 'gear', brand: 'Alpinestars', title: 'Alpinestars Supertech R Boots', price: 549, img: 'img/alpinestars_supertech_r.jpg', options: ['41', '42', '43', '44', '45'], details: 'Legendäre Rennstiefel mit separatem biomechanischem Innenschuh.' },
 
-            /* ==========================================================================
-               A. STATE CONTROL SYSTEM & COMPREHENSIVE REPOSITORY
-               ========================================================================== */
-            const localState = {
-                cartLedger: [],
-                activeCategory: 'all',
-                activeBrand: 'all',
-                activeSlideIndex: 0,
-                catalogItems: [
-                    { id: 101, type: 'bikes', brand: 'Aprilia', title: 'Aprilia RSV4 Factory 1100', price: 25999, img: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=600', options: ['Standard Factory Layout'], details: '217 PS V4-Triebwerk, Öhlins Smart EC 2.0 Fahrwerk.' },
-                    { id: 102, type: 'bikes', brand: 'Aprilia', title: 'Aprilia Tuono V4 Factory', price: 20999, img: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=600', options: ['Standard Factory Layout'], details: 'Hyper-Naked Triebwerk mit semiaktivem Fahrwerk und Carbon Komponenten.' },
-                    { id: 103, type: 'gear', brand: 'Alpinestars', title: 'Alpinestars GP Tech v4 Race Suit', price: 1499, img: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=600', options: ['48', '50', '52', '54', '56'], details: 'Känguruleder-Rennkombi optimiert für Tech-Air Airbagsysteme.' },
-                    { id: 104, type: 'gear', brand: 'AGV', title: 'AGV Pista GP RR Carbon Mono', price: 1299, img: 'https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?q=80&w=600', options: ['S', 'M', 'L', 'XL'], details: '100% Carbonfaser MotoGP Rennhelm mit maximalem Sichtfeld.' },
-                    { id: 105, type: 'gear', brand: 'Leftlane', title: 'Leftlane Pro Carbon Gloves', price: 199, img: 'https://images.unsplash.com/photo-1609630875171-b1321377ee65?q=80&w=600', options: ['M', 'L', 'XL'], details: 'Kevlarverstärktes Känguruleder für kompromissloses Feedback.' },
-                    { id: 106, type: 'gear', brand: 'Leftlane', title: 'Leftlane Apex Aero Boot v2', price: 349, img: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=600', options: ['42', '43', '44', '45'], details: 'Biomechanisches Innenschuhsystem für extremen Knöchelschutz.' },
-                    { id: 107, type: 'gear', brand: 'NLG Factory', title: 'NLG Custom Core One Race Suit', price: 1799, img: 'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?q=80&w=600', options: ['48', '50', '52', '54'], details: 'Hauseigenes High-End Kleinserien-Modell mit personalisierbaren Elementen.' }
-                ]
-            };
+            // --- PARTS (Auspuffe & Co) ---
+            { id: 301, type: 'parts', brand: 'Akrapovič', title: 'Akrapovič Evolution Line Titan Anlage', price: 3450, img: 'img/akrapovic_evo_titan.jpg', options: ['Racing (Ohne TÜV)'], details: 'Komplette Rennsportanlage aus ultraleichtem Titan. Maximaler Sound, massiver Leistungszuwachs.' },
+            { id: 302, type: 'parts', brand: 'Akrapovič', title: 'Akrapovič Slip-On Carbon', price: 929, img: 'img/akrapovic_slipon_carbon.jpg', options: ['Euro-5 Konform'], details: 'Einfacher Tausch gegen das Serienteil. Dumpfer Resonanzklang bei Straßenzulassung.' }
+        ];
 
-            /* ==========================================================================
-               B. DYNAMIC WEB INTERFACE RENDER DIRECTIVES
-               ========================================================================== */
-            function renderMarketplaceProducts() {
-                const targetNode = document.getElementById('catalog-dynamic-target');
-                if(!targetNode) return;
-                targetNode.innerHTML = '';
+        let cart = [];
 
-                const executionPool = localState.catalogItems.filter(item => {
-                    const matchCategory = localState.activeCategory === 'all' || item.type === localState.activeCategory;
-                    const matchBrand = localState.activeBrand === 'all' || item.brand === localState.activeBrand;
-                    return matchCategory && matchBrand;
-                });
+        /* --- UI & RENDER LOGIC --- */
+        function showToast(msg) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<strong>NLG System:</strong><br>${msg}`;
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
 
-                if(executionPool.length === 0) {
-                    targetNode.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:5rem; color:var(--nlg-text-muted); font-size:0.9rem; border:1px dashed var(--nlg-border);">Keine Produkte im ausgewählten Segment gelistet.</div>`;
-                    return;
-                }
+        function renderCatalog() {
+            const search = document.getElementById('search-input').value.toLowerCase();
+            const cat = document.getElementById('cat-filter').value;
+            const brand = document.getElementById('brand-filter').value;
+            const target = document.getElementById('catalog-target');
+            
+            target.innerHTML = '';
+            
+            const filtered = db.filter(item => {
+                if(item.type === 'bikes') return false; // Bikes werden im Dealership gerendert
+                const matchCat = cat === 'all' || item.type === cat;
+                const matchBrand = brand === 'all' || item.brand === brand;
+                const matchSearch = item.title.toLowerCase().includes(search) || item.details.toLowerCase().includes(search);
+                return matchCat && matchBrand && matchSearch;
+            });
 
-                executionPool.forEach(item => {
-                    const block = document.createElement('article');
-                    block.className = 'catalog-item';
-                    
-                    let optionsDropdownHTML = '';
-                    if(item.options && item.options.length > 0) {
-                        optionsDropdownHTML = `
-                            <div class="item-size-select-box">
-                                <select class="size-dropdown" id="spec-select-${item.id}">
-                                    ${item.options.map(opt => `<option value="${opt}">${item.type === 'gear' ? 'Größe ' : ''}${opt}</option>`).join('')}
-                                </select>
-                            </div>
-                        `;
-                    }
+            filtered.forEach(item => {
+                target.appendChild(createCardHTML(item));
+            });
+        }
 
-                    block.innerHTML = `
-                        <div class="item-visual-frame">
-                            <img src="${item.img}" class="item-img" alt="${item.title}" onerror="this.src='https://placehold.co/600x600/121214/ffffff?text=${item.brand}'">
-                        </div>
-                        <div class="item-data-block">
-                            <span class="item-brand-tag">${item.brand}</span>
-                            <h3 class="item-title">${item.title}</h3>
-                            <p class="item-specs">${item.details}</p>
-                            ${optionsDropdownHTML}
-                            <div class="item-interaction-row">
-                                <span class="item-price-tag">${item.price.toLocaleString('de-DE')} €</span>
-                                <button class="nlg-btn nlg-btn-primary buy-execution-trigger" data-id="${item.id}" style="padding:0.75rem 1.5rem; font-size:0.75rem;">Hinzufügen</button>
-                            </div>
-                        </div>
-                    `;
-                    targetNode.appendChild(block);
-                });
+        function renderBikes() {
+            const target = document.getElementById('bikes-target');
+            target.innerHTML = '';
+            const bikes = db.filter(i => i.type === 'bikes');
+            bikes.forEach(bike => {
+                target.appendChild(createCardHTML(bike));
+            });
+        }
 
-                // Attach Events to Newly Formed Buy Node Triggers
-                targetNode.querySelectorAll('.buy-execution-trigger').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const targetId = parseInt(e.target.getAttribute('data-id'));
-                        const dropdown = document.getElementById(`spec-select-${targetId}`);
-                        const selectedOption = dropdown ? dropdown.value : 'Standard';
-                        appendItemToStateLedger(targetId, selectedOption);
-                    });
-                });
+        function createCardHTML(item) {
+            const div = document.createElement('div');
+            div.className = 'product-card';
+            
+            let optionsHTML = '';
+            if(item.options.length > 0) {
+                optionsHTML = `<select class="input-glass" style="padding:0.75rem; margin-top:1rem; font-size:0.85rem;" id="opt-${item.id}">
+                    ${item.options.map(o => `<option value="${o}">${o}</option>`).join('')}
+                </select>`;
             }
 
-            function renderDealershipBikes() {
-                const targetNode = document.getElementById('dealership-bikes-target');
-                if(!targetNode) return;
-                targetNode.innerHTML = '';
+            div.innerHTML = `
+                <div class="card-img-box">
+                    <span class="brand-pill">${item.brand}</span>
+                    <img src="${item.img}" alt="${item.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span style="display:none; color:gray; font-family:monospace; font-size:0.8rem;">Benötigtes Bild:<br>${item.img}</span>
+                </div>
+                <div class="card-body">
+                    <h3>${item.title}</h3>
+                    <p>${item.details}</p>
+                    ${optionsHTML}
+                    <div class="card-footer">
+                        <span class="price">${item.price.toLocaleString('de-DE')} €</span>
+                        <button class="btn btn-glass" style="padding: 0.6rem 1.2rem; font-size:0.8rem;" onclick="addToCart(${item.id})">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+            return div;
+        }
 
-                const vehicles = localState.catalogItems.filter(i => i.type === 'bikes');
-                vehicles.forEach(bike => {
-                    const block = document.createElement('div');
-                    block.className = 'catalog-item';
-                    block.innerHTML = `
-                        <div class="item-visual-frame">
-                            <img src="${bike.img}" class="item-img" alt="${bike.title}">
-                        </div>
-                        <div class="item-data-block">
-                            <span class="item-brand-tag">${bike.brand} | Showroom</span>
-                            <h3 class="item-title">${bike.title}</h3>
-                            <p class="item-specs">Sofort abrufbereites Fahrzeug im Werksshowroom Hamburg/München.</p>
-                            <div class="item-interaction-row">
-                                <span class="item-price-tag">${bike.price.toLocaleString('de-DE')} €</span>
-                                <button class="nlg-btn nlg-btn-secondary vehicle-inquiry-btn" data-title="${bike.title}">Consulting anfordern</button>
-                            </div>
-                        </div>
-                    `;
-                    targetNode.appendChild(block);
-                });
+        /* --- CART LOGIC --- */
+        function toggleCart() {
+            document.getElementById('cart-drawer').classList.toggle('open');
+        }
 
-                targetNode.querySelectorAll('.vehicle-inquiry-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const title = e.target.getAttribute('data-title');
-                        executeToastLog(`Anfrage für ${title} erfolgreich übermittelt.`);
-                    });
-                });
+        function addToCart(id) {
+            const product = db.find(p => p.id === id);
+            const optNode = document.getElementById(`opt-${id}`);
+            const selectedOpt = optNode ? optNode.value : 'Standard';
+
+            cart.push({ ...product, selectedOpt, cartId: Date.now() });
+            updateCart();
+            showToast(`${product.title} wurde in den Warenkorb gelegt.`);
+        }
+
+        function removeCart(cartId) {
+            cart = cart.filter(c => c.cartId !== cartId);
+            updateCart();
+        }
+
+        function updateCart() {
+            const container = document.getElementById('cart-items');
+            const totalNode = document.getElementById('cart-total-price');
+            const countNode = document.getElementById('cart-counter');
+
+            countNode.innerText = cart.length;
+            container.innerHTML = '';
+
+            if(cart.length === 0) {
+                container.innerHTML = '<p style="color:var(--nlg-text-muted); text-align:center; padding-top:2rem;">Warenkorb ist leer.</p>';
+                totalNode.innerText = '0,00 €';
+                return;
             }
 
-            /* ==========================================================================
-               C. SECURE LOCAL CONTENT MANAGEMENT ENGINE (Live File Reader Component)
-               ========================================================================== */
-            const intakeFileNode = document.getElementById('intake-file');
-            if(intakeFileNode) {
-                intakeFileNode.addEventListener('change', (e) => {
-                    const labelText = document.getElementById('file-label-text');
-                    if(e.target.files.length > 0) {
-                        labelText.textContent = `Bild geladen: ${e.target.files[0].name}`;
-                        labelText.style.borderColor = 'var(--nlg-text-pure)';
-                    }
-                });
-            }
-
-            const intakeTrigger = document.getElementById('intake-trigger-action');
-            if(intakeTrigger) {
-                intakeTrigger.addEventListener('click', () => {
-                    const name = document.getElementById('intake-name').value.trim();
-                    const price = parseFloat(document.getElementById('intake-price').value);
-                    const cat = document.getElementById('intake-category').value;
-                    const brand = document.getElementById('intake-brand').value;
-                    const fileInput = document.getElementById('intake-file');
-
-                    if(!name || isNaN(price)) {
-                        executeToastLog('Fehler: Ungültige Namens- oder Preisdefinition.', 'error');
-                        return;
-                    }
-
-                    let processingImgUrl = 'https://placehold.co/600x600/121214/ffffff?text=' + encodeURIComponent(brand);
-
-                    if(fileInput.files && fileInput.files[0]) {
-                        const reader = new FileReader();
-                        reader.onload = function(evt) {
-                            processingImgUrl = evt.target.result;
-                            injectItemIntoSystemMemory(name, price, cat, brand, processingImgUrl);
-                        };
-                        reader.readAsDataURL(fileInput.files[0]);
-                    } else {
-                        injectItemIntoSystemMemory(name, price, cat, brand, processingImgUrl);
-                    }
-                });
-            }
-
-            function injectItemIntoSystemMemory(name, price, cat, brand, imgDataUri) {
-                const synthesizedId = Date.now();
-                localState.catalogItems.unshift({
-                    id: synthesizedId,
-                    type: cat,
-                    brand: brand,
-                    title: name,
-                    price: price,
-                    img: imgDataUri,
-                    options: cat === 'gear' ? ['M', 'L', 'XL'] : ['Standard Factory Layout'],
-                    details: 'Manuell verifiziertes Systemprodukt über das NLG Live Dashboard.'
-                });
-                
-                renderMarketplaceProducts();
-                renderDealershipBikes();
-                executeToastLog(`System-Intake erfolgreich: ${name}`);
-
-                // Flush Form Input Elements
-                document.getElementById('intake-name').value = '';
-                document.getElementById('intake-price').value = '';
-                document.getElementById('intake-file').value = '';
-                document.getElementById('file-label-text').textContent = 'Eigenes Produktbild hochladen';
-                document.getElementById('file-label-text').style.borderColor = 'var(--nlg-border)';
-            }
-
-            /* ==========================================================================
-               D. BALANCED PRECISE FACTORY CALCULATION ARCHITECTURE
-               ========================================================================== */
-            const calculationFormNode = document.getElementById('factory-interactive-calculation-sheet');
-            if(calculationFormNode) {
-                ['change', 'input'].forEach(evt => {
-                    calculationFormNode.addEventListener(evt, runUnifiedPriceMatrixCalculation);
-                });
-            }
-
-            function runUnifiedPriceMatrixCalculation() {
-                const primaryServiceNode = document.getElementById('sheet-primary-service');
-                const brandVectorNode = document.getElementById('sheet-brand-vector');
-                const displacementVectorNode = document.getElementById('sheet-displacement-vector');
-
-                if(!primaryServiceNode) return;
-
-                let strategicBaseCost = 0;
-                let structuralLabel = '';
-
-                switch(primaryServiceNode.value) {
-                    case 'inspektion': strategicBaseCost = 250; structuralLabel = 'Werksinspektion (Herstellervorgabe)'; break;
-                    case 'fluid': strategicBaseCost = 75; structuralLabel = 'Aggregat-Flüssigkeitsservice'; break;
-                    case 'wheel': strategicBaseCost = 120; structuralLabel = 'Laser-Radsatzkonfiguration'; break;
-                    case 'mapping': strategicBaseCost = 380; structuralLabel = 'ECU Engine Mapping'; break;
-                    case 'diy': strategicBaseCost = 30; structuralLabel = 'Factory Support Stellplatz / Std.'; break;
-                }
-
-                // Apply Strict Core Vector Modifiers Matrix
-                let brandMultiplier = 1.0;
-                if(brandVectorNode.value === 'eu') brandMultiplier = 1.15;
-                if(brandVectorNode.value === 'ex') brandMultiplier = 1.35;
-
-                let displacementPremium = 0;
-                if(displacementVectorNode.value === 'mid') displacementPremium = 45;
-                if(displacementVectorNode.value === 'super') displacementPremium = 95;
-
-                let processedCoreSum = (strategicBaseCost * brandMultiplier) + displacementPremium;
-
-                // DOM Modification Pipeline
-                const ledgerTarget = document.getElementById('invoice-ledger-hook');
-                ledgerTarget.innerHTML = '';
-                appendLineItemToLedgerDOM(ledgerTarget, structuralLabel, `${processedCoreSum.toFixed(2)} €`);
-
-                // Accumulate Optional Modular Extras Addons
-                let aggregatedExtraCost = 0;
-                document.querySelectorAll('.service-selection-grid input:checked').forEach(checkbox => {
-                    const costValue = parseFloat(checkbox.value);
-                    aggregatedExtraCost += costValue;
-                    const referenceLabel = checkbox.parentElement.querySelector('.custom-checkbox-facade').textContent;
-                    appendLineItemToLedgerDOM(ledgerTarget, `Modul: ${referenceLabel}`, `${costValue.toFixed(2)} €`);
-                });
-
-                const structuralFinalAggregateSum = processedCoreSum + aggregatedExtraCost;
-                document.getElementById('matrix-aggregate-total').textContent = `${structuralFinalAggregateSum.toFixed(2)} €`;
-            }
-
-            function appendLineItemToLedgerDOM(target, descriptor, pricing) {
-                const node = document.createElement('li');
-                node.className = 'ledger-line';
-                node.innerHTML = `<span>${descriptor}</span><strong>${pricing}</strong>`;
-                target.appendChild(node);
-            }
-
-            /* ==========================================================================
-               E. SYSTEM STATE CARGO MANAGEMENT (Cart Architecture)
-               ========================================================================== */
-            function appendItemToStateLedger(id, specification) {
-                const structuralProductRef = localState.catalogItems.find(p => p.id === id);
-                if(!structuralProductRef) return;
-
-                const existingAllocation = localState.cartLedger.find(item => item.id === id && item.specification === specification);
-                if(existingAllocation) {
-                    existingAllocation.quantity++;
-                } else {
-                    localState.cartLedger.push({ ...structuralProductRef, specification: specification, quantity: 1 });
-                }
-
-                refreshCartLedgerUI();
-                executeToastLog(`${structuralProductRef.title} (${specification}) erfasst.`);
-            }
-
-            function refreshCartLedgerUI() {
-                const displayHook = document.getElementById('cart-ledger-items-hook');
-                const indicatorHook = document.getElementById('ledger-count-display');
-                const matrixTotalHook = document.getElementById('cart-aggregate-price-display');
-
-                if(!displayHook) return;
-                displayHook.innerHTML = '';
-
-                let cumulativePrice = 0;
-                let physicalQuantitySum = 0;
-
-                localState.cartLedger.forEach((item, pointer) => {
-                    cumulativePrice += item.price * item.quantity;
-                    physicalQuantitySum += item.quantity;
-
-                    const layoutBlock = document.createElement('div');
-                    layoutBlock.className = 'cart-line-item';
-                    layoutBlock.innerHTML = `
+            let sum = 0;
+            cart.forEach(item => {
+                sum += item.price;
+                container.innerHTML += `
+                    <div class="cart-item-row">
                         <div>
-                            <div style="font-weight:600; font-size:1rem;">${item.title}</div>
-                            <div style="font-size:0.8rem; color:var(--nlg-text-muted); margin-top:0.25rem;">Spezifikation: ${item.specification} | Anzahl: ${item.quantity}</div>
-                            <button class="cart-line-item-remove-btn" data-pointer="${pointer}">Entfernen</button>
+                            <div style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">${item.title}</div>
+                            <div style="font-size:0.8rem; color:var(--nlg-text-muted);">Spezifikation: ${item.selectedOpt}</div>
+                            <button onclick="removeCart(${item.cartId})" style="background:none; border:none; color:var(--nlg-accent); cursor:pointer; font-size:0.75rem; text-transform:uppercase; font-weight:700; margin-top:8px;">Entfernen</button>
                         </div>
-                        <span style="font-weight:700;">${(item.price * item.quantity).toLocaleString('de-DE')} €</span>
-                    `;
-                    displayHook.appendChild(layoutBlock);
-                });
-
-                indicatorHook.textContent = physicalQuantitySum;
-                matrixTotalHook.textContent = `${cumulativePrice.toLocaleString('de-DE')},00 €`;
-
-                displayHook.querySelectorAll('.cart-line-item-remove-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const referenceIndex = parseInt(e.target.getAttribute('data-pointer'));
-                        localState.cartLedger.splice(referenceIndex, 1);
-                        refreshCartLedgerUI();
-                    });
-                });
-            }
-
-            /* ==========================================================================
-               F. CRITICAL REALISTIC RISK/VALUE VALUATION ALGORITHM
-               ========================================================================== */
-            const valuationActionTrigger = document.getElementById('valuation-trigger');
-            if(valuationActionTrigger) {
-                valuationActionTrigger.addEventListener('click', () => {
-                    const modelName = document.getElementById('valuation-model').value.trim();
-                    const registrationYear = parseInt(document.getElementById('valuation-year').value);
-                    const historicalMileage = parseInt(document.getElementById('valuation-mileage').value);
-                    const conditionCoefficient = parseFloat(document.getElementById('valuation-status').value);
-
-                    if(!modelName || isNaN(registrationYear) || isNaN(historicalMileage)) {
-                        executeToastLog('Fehler: Unvollständige fahrzeugrelevante Datenmatrizen.', 'error');
-                        return;
-                    }
-
-                    // Strategic Valuation Matrix Constants
-                    let structuralBaselineValue = 16000;
-                    if(modelName.toLowerCase().includes('aprilia')) structuralBaselineValue = 24000;
-                    if(modelName.toLowerCase().includes('125')) structuralBaselineValue = 4800;
-
-                    const operationalAgeDelta = 2026 - registrationYear;
-                    const linearAgeDepreciation = operationalAgeDelta * 1150;
-                    const technologicalMileageDepreciation = (historicalMileage / 1000) * 130;
-
-                    let calibratedCalculatedValue = (structuralBaselineValue - linearAgeDepreciation - technologicalMileageDepreciation) * conditionCoefficient;
-                    if(calibratedCalculatedValue < 400) calibratedCalculatedValue = 400;
-
-                    const layoutResponseFrame = document.getElementById('valuation-response-frame');
-                    const valueOutputNode = document.getElementById('valuation-output-price');
-
-                    valueOutputNode.textContent = `${Math.round(calibratedCalculatedValue).toLocaleString('de-DE')} €`;
-                    layoutResponseFrame.style.display = 'block';
-                    executeToastLog('Datenanalyse für Wertermittlung abgeschlossen.');
-                });
-            }
-
-            /* ==========================================================================
-               G. NOTIFICATION ENGINE & SYSTEMS CORE INTERACTION INTERFACE
-               ========================================================================== */
-            function executeToastLog(message, variant = 'success') {
-                const targetCenter = document.getElementById('toast-hub-center');
-                const frame = document.createElement('div');
-                frame.className = 'toast-notification';
-                if(variant === 'error') frame.style.borderColor = 'var(--nlg-accent)';
-                frame.innerHTML = `<span>■</span> <span>${message}</span>`;
-                targetCenter.appendChild(frame);
-
-                setTimeout(() => frame.classList.add('active'), 40);
-                setTimeout(() => {
-                    frame.classList.remove('active');
-                    setTimeout(() => frame.remove(), 400);
-                }, 3000);
-            }
-
-            /* ==========================================================================
-               H. KI CORE SIMULATION SUITE TERMINAL CONSOLE
-               ========================================================================== */
-            const chatTransmitAction = document.getElementById('ai-chat-transmit-action');
-            const chatClientInput = document.getElementById('ai-chat-client-input');
-            const chatTerminalHook = document.getElementById('ai-chat-terminal-hook');
-
-            if(chatTransmitAction && chatClientInput) {
-                chatTransmitAction.addEventListener('click', processClientChatCommand);
-                chatClientInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') processClientChatCommand(); });
-            }
-
-            function processClientChatCommand() {
-                const textCommand = chatClientInput.value.trim();
-                if(!textCommand) return;
-
-                injectMessageBlockIntoTerminal(textCommand, 'client');
-                chatClientInput.value = '';
-
-                setTimeout(() => {
-                    let evaluationFeedback = "Ihre Anfrage wurde im System protokolliert. Ein spezialisierter Support-Mitarbeiter wird die Daten prüfen.";
-                    const localizedCommandString = textCommand.toLowerCase();
-
-                    if(localizedCommandString.includes('werkstatt') || localizedCommandString.includes('inspektion') || localizedCommandString.includes('service')) {
-                        evaluationFeedback = "Die werkseigene Werkstatt arbeitet streng nach zertifizierten Ablaufprotokollen. Buchungen können über das digitale Formular spezifiziert werden.";
-                    } else if(localizedCommandString.includes('aprilia') || localizedCommandString.includes('showroom') || localizedCommandString.includes('fahrzeug')) {
-                        evaluationFeedback = "NLG betreibt exklusive Kontingente für Aprilia Neufahrzeuge. Details zu Verfügbarkeiten finden Sie in der Sektion Dealership.";
-                    } else if(localizedCommandString.includes('ankauf') || localizedCommandString.includes('verkaufen')) {
-                        evaluationFeedback = "Die Echtzeit-Bewertungsmatrix ermittelt den Fahrzeugwert datenunterstützt. Nutzen Sie hierzu das Bewertungsportal im Bereich Dealership.";
-                    }
-                    injectMessageBlockIntoTerminal(evaluationFeedback, 'system');
-                }, 600);
-            }
-
-            function injectMessageBlockIntoTerminal(message, provenance) {
-                const block = document.createElement('div');
-                block.className = `terminal-output-block block-${provenance}`;
-                block.textContent = message;
-                chatTerminalHook.appendChild(block);
-                chatTerminalHook.scrollTop = chatTerminalHook.scrollHeight;
-            }
-
-            /* ==========================================================================
-               I. COMPLIANCE INTERFACES INTERACTIONS (Impressum, Datenschutz, AGB)
-               ========================================================================== */
-            const curtainNode = document.getElementById('global-curtain-node');
-            const curtainTarget = document.getElementById('curtain-injected-data-target');
-
-            document.querySelectorAll('.legal-node-trigger').forEach(trigger => {
-                trigger.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const classificationMode = e.target.getAttribute('data-legal');
-                    generateLegalTextPayload(classificationMode);
-                });
+                        <div style="font-weight:800;">${item.price.toLocaleString('de-DE')} €</div>
+                    </div>
+                `;
             });
+            totalNode.innerText = sum.toLocaleString('de-DE') + ' €';
+        }
 
-            function generateLegalTextPayload(mode) {
-                if(!curtainTarget || !curtainNode) return;
-                let coreHtmlData = '';
+        function checkoutSim() {
+            if(cart.length === 0) return showToast('Warenkorb ist leer!');
+            alert('Bestellsimulation erfolgreich! Vielen Dank für deinen Einkauf bei No Limit Gear.');
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
 
-                if(mode === 'impressum') {
-                    coreHtmlData = `
-                        <h2>Impressum / Corporate Framework</h2>
-                        <div style="margin-top: 2rem; display:flex; flex-direction:column; gap:1rem;">
-                            <p><strong>NLG No Limit Gear Core Corporation Europe GmbH</strong></p>
-                            <p>Logistik-Zentrale Süd: Heidemannstraße 164, 80939 München</p>
-                            <p><strong>Vorsitzender des Aufsichtsrates:</strong> M. Lehmann, Chief Executive Officer</p>
-                            <p><strong>Handelsregister:</strong> Amtsgericht München, HRB 998231</p>
-                            <p><strong>Umsatzsteuer-Identifikationsnummer:</strong> DE 812749321</p>
-                        </div>
-                    `;
-                } else if(mode === 'datenschutz') {
-                    coreHtmlData = `
-                        <h2>Datenschutzerklärung / Data Privacy Shield</h2>
-                        <div style="margin-top: 2rem; display:flex; flex-direction:column; gap:1rem;">
-                            <p>Die Verarbeitung personenbezogener Daten (Bestellmatrizen, KM-Laufleistungen, Konfigurationsdaten) erfolgt strikt konform zur DSGVO.</p>
-                            <p>Lokale Datei-Uploads im Rahmen des Inventory Dashboards werden temporär verarbeitet und nicht persistent auf externen Serverarchitekturen hinterlegt.</p>
-                        </div>
-                    `;
-                } else if(mode === 'agb') {
-                    coreHtmlData = `
-                        <h2>Allgemeine Geschäftsbedingungen (AGB)</h2>
-                        <div style="margin-top: 2rem; display:flex; flex-direction:column; gap:1rem;">
-                            <p><strong>§1 Geltungsbereich:</strong> Lieferungen, Fahrzeugübergaben und Aggregate-Wartungen erfolgen ausschließlich auf Basis der vorliegenden Regularien der NLG Corporation.</p>
-                            <p><strong>§2 Eigentumsvorbehalt:</strong> Gelieferte Systemkomponenten verbleiben bis zur vollständigen Liquidierung des Rechnungsbetrages im Eigentum der NLG Corporation.</p>
-                        </div>
-                    `;
-                }
-
-                curtainTarget.innerHTML = coreHtmlData;
-                curtainNode.classList.add('engaged');
-            }
-
-            /* ==========================================================================
-               J. INTERACTION CONTROL ROUTINES & EVENT STRUCTURING
-               ========================================================================== */
-            document.getElementById('curtain-dismiss-action')?.addEventListener('click', () => curtainNode.classList.remove('engaged'));
-            document.getElementById('core-cart-toggle').addEventListener('click', () => document.getElementById('cart-slide-over-node').classList.toggle('engaged'));
-            document.getElementById('cart-slide-close-action').addEventListener('click', () => document.getElementById('cart-slide-over-node').classList.remove('engaged'));
-            document.getElementById('ai-chat-window-toggle').addEventListener('click', () => document.getElementById('ai-chat-window-node').classList.toggle('active'));
-            document.getElementById('ai-chat-close-x').addEventListener('click', () => document.getElementById('ai-chat-window-node').classList.remove('active'));
-
-            // Core Visual Engine Intercept
-            document.getElementById('core-theme-toggle').addEventListener('click', () => {
-                const systemNextTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-                document.documentElement.setAttribute('data-theme', systemNextTheme);
+        /* --- FACTORY & DEALERSHIP LOGIC --- */
+        function updateServiceInvoice() {
+            const basePrice = parseFloat(document.getElementById('srv-base').value);
+            const addons = document.querySelectorAll('.srv-addon:checked');
+            const list = document.getElementById('invoice-list');
+            const sumNode = document.getElementById('invoice-sum');
+            
+            list.innerHTML = `<li class="invoice-line"><span>Gewählter Basis-Service</span><span>${basePrice.toFixed(2)} €</span></li>`;
+            
+            let total = basePrice;
+            addons.forEach(box => {
+                const val = parseFloat(box.value);
+                const text = box.nextElementSibling.innerText;
+                total += val;
+                list.innerHTML += `<li class="invoice-line"><span>+ ${text}</span><span>${val.toFixed(2)} €</span></li>`;
             });
+            
+            sumNode.innerText = total.toLocaleString('de-DE', {minimumFractionDigits: 2}) + ' €';
+        }
 
-            // Logistics Hub Routing Notification Link
-            document.querySelectorAll('.routing-action-trigger').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const destination = e.target.getAttribute('data-destination');
-                    executeToastLog(`Routing-Vektor zum Hub ${destination} berechnet.`);
-                });
+        function calculateValuation() {
+            const model = document.getElementById('val-model').value;
+            const year = parseInt(document.getElementById('val-year').value);
+            const km = parseInt(document.getElementById('val-km').value);
+            const cond = parseFloat(document.getElementById('val-cond').value);
+
+            if(!model || isNaN(year) || isNaN(km)) return showToast('Bitte fülle alle Fahrzeugdaten korrekt aus.');
+
+            let base = 12000;
+            if(model.toLowerCase().includes('aprilia')) base = 18000;
+            
+            const ageDepreciation = (2026 - year) * 1000;
+            const kmDepreciation = (km / 1000) * 100;
+            let val = (base - ageDepreciation - kmDepreciation) * cond;
+            
+            if(val < 500) val = 500;
+
+            document.getElementById('val-price').innerText = Math.round(val).toLocaleString('de-DE') + ' €';
+            document.getElementById('val-result-box').style.display = 'block';
+            showToast('Fahrzeugwert wurde berechnet.');
+        }
+
+        /* --- EVENT LISTENERS --- */
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                e.target.classList.add('active');
+                document.getElementById(e.target.dataset.target).classList.add('active');
             });
-
-            // Tab Component Controller Dealership
-            document.querySelectorAll('.dealership-toggle-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('.dealership-toggle-btn').forEach(b => b.classList.remove('active'));
-                    document.querySelectorAll('.dealership-view').forEach(v => v.classList.remove('active'));
-                    
-                    e.target.classList.add('active');
-                    document.getElementById(e.target.getAttribute('data-view')).classList.add('active');
-                });
-            });
-
-            // Structural Scroll Monitoring Module
-            window.addEventListener('scroll', () => {
-                const headerElementRef = document.getElementById('global-header');
-                if(window.scrollY > 60) headerElementRef.classList.add('compact');
-                else headerElementRef.classList.remove('compact');
-            });
-
-            // Hero Slide Controller Architecture
-            const dynamicSlidesPool = document.querySelectorAll('.stage-slide');
-            function advanceHeroStageSlide(vectorDirection) {
-                dynamicSlidesPool[localState.activeSlideIndex].classList.remove('active');
-                if(vectorDirection === 'next') {
-                    localState.activeSlideIndex = (localState.activeSlideIndex + 1) % dynamicSlidesPool.length;
-                } else {
-                    localState.activeSlideIndex = (localState.activeSlideIndex - 1 + dynamicSlidesPool.length) % dynamicSlidesPool.length;
-                }
-                dynamicSlidesPool[localState.activeSlideIndex].classList.add('active');
-            }
-            document.getElementById('stage-next-control')?.addEventListener('click', () => advanceHeroStageSlide('next'));
-            document.getElementById('stage-prev-control')?.addEventListener('click', () => advanceHeroStageSlide('prev'));
-            setInterval(() => advanceHeroStageSlide('next'), 8000);
-
-            // Filter Configuration Hook Interceptors
-            document.querySelectorAll('#segment-filter-hook .filter-control-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('#segment-filter-hook .filter-control-btn').forEach(b => b.classList.remove('active'));
-                    e.target.classList.add('active');
-                    localState.activeCategory = e.target.getAttribute('data-filter');
-                    renderMarketplaceProducts();
-                });
-            });
-
-            document.querySelectorAll('#brand-filter-hook .filter-control-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('#brand-filter-hook .filter-control-btn').forEach(b => b.classList.remove('active'));
-                    e.target.classList.add('active');
-                    localState.activeBrand = e.target.getAttribute('data-brand');
-                    renderMarketplaceProducts();
-                });
-            });
-
-            /* ==========================================================================
-               K. SYSTEM INITIALIZATION INVOCATION
-               ========================================================================== */
-            renderMarketplaceProducts();
-            renderDealershipBikes();
-            runUnifiedPriceMatrixCalculation();
         });
+
+        // Header Background Effect on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if(window.scrollY > 50) {
+                header.style.background = 'rgba(10, 10, 12, 0.95)';
+                header.style.borderColor = 'var(--nlg-accent)';
+            } else {
+                header.style.background = 'rgba(15, 15, 18, 0.7)';
+                header.style.borderColor = 'var(--nlg-border-soft)';
+            }
+        });
+
+        // Init
+        window.onload = () => {
+            renderCatalog();
+            renderBikes();
+            updateServiceInvoice();
+        };
     </script>
 </body>
 </html>
